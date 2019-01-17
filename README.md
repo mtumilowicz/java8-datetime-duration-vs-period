@@ -25,7 +25,7 @@ _Reference_: https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html
 
 ## instance methods
 
-# duration
+# period
 
 ## static methods
 
