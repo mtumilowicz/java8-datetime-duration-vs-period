@@ -22,8 +22,26 @@ _Reference_: https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html
 * seconds could be negative, positive or zero while nanoseconds could be only positive or zero
 
 ## static methods
+All of methods below return `Duration`:
+* `between(Temporal startInclusive, Temporal endExclusive)`
+* `from(TemporalAmount amount)`
+* `of(long amount, TemporalUnit unit)`
+* `ofDays/Hours/Millis/Minutes/Nanos/Seconds`
+* `parse(CharSequence text)`
 
 ## instance methods
+* `Duration abs()` - copy of this duration with a positive length.
+* `Temporal addTo/subtractFrom(Temporal temporal)`
+* `boolean isNegative()`
+* `boolean isZero()`
+* `Duration minus/plus(Duration duration)`
+* `Duration minus/plus(long amount, TemporalUnit unit)`
+* `Duration plus/minusDays/Hours/Millis/Minutes/Nanos/Seconds(long amount)`
+* `Duration multipliedBy/dividedBy(long value)`
+* `Duration negated()`
+* `long toDays/Hours/Millis/Minutes/Nanos`
+* `Duration withNanos(int nanoOfSecond)`
+* `Duration withSeconds(long seconds)`
 
 # period
 
