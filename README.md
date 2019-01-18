@@ -20,6 +20,7 @@ _Reference_: https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html
     as you may see from one of the many static factory 
     methods - the duration is calculated to (second, millis)
 * seconds could be negative, positive or zero while nanoseconds could be only positive or zero
+* **daylight savings time: ignored**
 
 ## static methods
 All of methods below return `Duration`:
@@ -44,7 +45,17 @@ All of methods below return `Duration`:
 * `Duration withSeconds(long seconds)`
 
 # period
+* a date-based amount of time in the ISO-8601 calendar system
+* models a quantity or amount of time in terms of years, months and days
+* period is modeled as a directed amount of time, meaning that individual parts of the period may be negative
+* **daylight savings time: maintain the local time**
 
 ## static methods
+All of methods below return `Period`:
+* `between(Temporal startInclusive, Temporal endExclusive)`
+* `from(TemporalAmount amount)`
+* `of(long amount, TemporalUnit unit)`
+* `ofDays/Hours/Millis/Minutes/Nanos/Seconds`
+* `parse(CharSequence text)`
 
 ## instance methods
