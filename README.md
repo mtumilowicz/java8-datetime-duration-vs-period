@@ -32,13 +32,14 @@ All of methods below return `Duration`:
 * `parse(CharSequence text)` - pattern: `PnDTnHnMn.nS` (with optional sign at the beginning)
     * `P2DT-3H4M` parsed to _2 days, -3 hours and 4 minutes_
     * `-P2D` parsed to _-2 days_
-    * is not normalized, but _-PT4M_ is transformed to _PT-4M_
+    * normalized to hours: _P2DT-3H4M_ -> _PT45H4M_
+    * minus in the front is removed and propagated inside: _-PT4M_ is transformed to _PT-4M_
 
 ## instance methods
 * `Duration abs()` - copy of this duration with a positive length.
 * `Temporal addTo/subtractFrom(Temporal temporal)`
 * `int compareTo(Duration otherDuration)`
-* `boolean equals(Object otherDuration)`
+* `boolean equals(Object otherDuration)` - compares seconds and nanosecond, so format does not matter
 * `boolean isNegative()`
 * `boolean isZero()`
 * `long	get(TemporalUnit unit)`
