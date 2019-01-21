@@ -1,7 +1,8 @@
 # java8-datetime-duration-vs-period
 _Reference_: https://docs.oracle.com/javase/tutorial/datetime/iso/period.html  
 _Reference_: https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html  
-_Reference_: https://docs.oracle.com/javase/8/docs/api/java/time/Period.html
+_Reference_: https://docs.oracle.com/javase/8/docs/api/java/time/Period.html  
+_Reference_: https://docs.oracle.com/javase/8/docs/api/java/time/temporal/ChronoUnit.html
 
 # duration
 * a time-based amount of time
@@ -32,7 +33,7 @@ All of methods below return `Duration`:
 * `parse(CharSequence text)` - pattern: `PnDTnHnMn.nS` (with optional sign at the beginning)
     * `P2DT-3H4M` parsed to _2 days, -3 hours and 4 minutes_
     * `-P2D` parsed to _-2 days_
-    * normalized to hours: _P2DT-3H4M_ -> _PT45H4M_
+    * normalized to hours: _P2DT-3H4M_ -> _PT45H4M_, _PT60M_ -> _PT1H_
     * minus in the front is removed and propagated inside: _-PT4M_ is transformed to _PT-4M_
 
 ## instance methods
@@ -42,9 +43,10 @@ All of methods below return `Duration`:
 * `boolean equals(Object otherDuration)` - compares seconds and nanosecond, so format does not matter
 * `boolean isNegative()`
 * `boolean isZero()`
+* `List<TemporalUnit> getUnits()` - {SECONDS, NANOS}
 * `long	get(TemporalUnit unit)`
+    * only second and nanos, otherwise `UnsupportedTemporalTypeException`
 * `long getNano/Seconds()`
-* `List<TemporalUnit> getUnits()`
 * `Duration minus/plus(Duration duration)`
 * `Duration minus/plus(long amount, TemporalUnit unit)`
 * `Duration plus/minusDays/Hours/Millis/Minutes/Nanos/Seconds(long amount)`
@@ -52,6 +54,8 @@ All of methods below return `Duration`:
 * `Duration negated()`
 * `long toDays/Hours/Millis/Minutes/Nanos()`
 * `String toString()`
+    * format: `PTnHnMnS` and fractional seconds are placed after a decimal point in the seconds section
+    * hours, minutes and seconds all have the same sign
 * `Duration withNanos(int nanoOfSecond)`
 * `Duration withSeconds(long seconds)`
 
