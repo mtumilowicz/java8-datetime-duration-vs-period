@@ -34,14 +34,20 @@ All of methods below return `Duration`:
 ## instance methods
 * `Duration abs()` - copy of this duration with a positive length.
 * `Temporal addTo/subtractFrom(Temporal temporal)`
+* `int compareTo(Duration otherDuration)`
+* `boolean equals(Object otherDuration)`
 * `boolean isNegative()`
 * `boolean isZero()`
+* `long	get(TemporalUnit unit)`
+* `long getNano/Seconds()`
+* `List<TemporalUnit> getUnits()`
 * `Duration minus/plus(Duration duration)`
 * `Duration minus/plus(long amount, TemporalUnit unit)`
 * `Duration plus/minusDays/Hours/Millis/Minutes/Nanos/Seconds(long amount)`
 * `Duration multipliedBy/dividedBy(long value)`
 * `Duration negated()`
-* `long toDays/Hours/Millis/Minutes/Nanos`
+* `long toDays/Hours/Millis/Minutes/Nanos()`
+* `String toString()`
 * `Duration withNanos(int nanoOfSecond)`
 * `Duration withSeconds(long seconds)`
 
@@ -61,8 +67,11 @@ All of methods below return `Period`:
 
 ## instance methods
 * `Temporal addTo/subtractFrom(Temporal temporal)`
+* `boolean equals(Object obj)`
+* `IsoChronology getChronology()`
 * `long	get(TemporalUnit unit)` - Gets the value of the requested unit.
 * `int getDays/Months/Years()`
+* `List<TemporalUnit> getUnits()`
 * `boolean isNegative()`
 * `boolean isZero()`
 * `Period minus/plus(TemporalAmount amount)`
@@ -70,5 +79,6 @@ All of methods below return `Period`:
 * `Period multipliedBy/dividedBy(long value)`
 * `Period negated()`
 * `Period normalized()` - Returns a copy of this period with the years and months normalized.
+* `String toString()`
 * `long	toTotalMonths()`
 * `Period withDays/Months/Years(int amount)`
