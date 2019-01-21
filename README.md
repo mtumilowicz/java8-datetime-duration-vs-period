@@ -1,6 +1,7 @@
 # java8-datetime-duration-vs-period
-_Reference_: https://docs.oracle.com/javase/tutorial/datetime/iso/period.html
-_Reference_: https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html
+_Reference_: https://docs.oracle.com/javase/tutorial/datetime/iso/period.html  
+_Reference_: https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html  
+_Reference_: https://docs.oracle.com/javase/8/docs/api/java/time/Period.html
 
 # duration
 * a time-based amount of time
@@ -59,3 +60,15 @@ All of methods below return `Period`:
 * `parse(CharSequence text)`
 
 ## instance methods
+* `Temporal addTo/subtractFrom(Temporal temporal)`
+* `long	get(TemporalUnit unit)` - Gets the value of the requested unit.
+* `int getDays/Months/Years()`
+* `boolean isNegative()`
+* `boolean isZero()`
+* `Period minus/plus(TemporalAmount amount)`
+* `Period minus/plusDays/Months/Years(long amount)`
+* `Period multipliedBy/dividedBy(long value)`
+* `Period negated()`
+* `Period normalized()` - Returns a copy of this period with the years and months normalized.
+* `long	toTotalMonths()`
+* `Period withDays/Months/Years(int amount)`
