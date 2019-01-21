@@ -35,6 +35,7 @@ All of methods below return `Duration`:
     * `-P2D` parsed to _-2 days_
     * normalized to hours: _P2DT-3H4M_ -> _PT45H4M_, _PT60M_ -> _PT1H_
     * minus in the front is removed and propagated inside: _-PT4M_ is transformed to _PT-4M_
+    * `DateTimeParseException`
 
 ## instance methods
 * `Duration abs()` - copy of this duration with a positive length.
@@ -70,8 +71,10 @@ All of methods below return `Period`:
 * `between(Temporal startInclusive, Temporal endExclusive)`
 * `from(TemporalAmount amount)`
 * `of(long amount, TemporalUnit unit)`
-* `ofDays/Hours/Millis/Minutes/Nanos/Seconds`
+* `ofDays/Hours/Millis/Minutes/Nanos/Seconds(long amount)`
 * `parse(CharSequence text)`
+    * format: `PnYnMnWnD` (with optional sign at the beginning)
+    * `DateTimeParseException`
 
 ## instance methods
 * `Temporal addTo/subtractFrom(Temporal temporal)`
