@@ -29,7 +29,9 @@ All of methods below return `Duration`:
 * `from(TemporalAmount amount)`
 * `of(long amount, TemporalUnit unit)`
 * `ofDays/Hours/Millis/Minutes/Nanos/Seconds`
-* `parse(CharSequence text)`
+* `parse(CharSequence text)` - pattern: `PnDTnHnMn.nS` (with optional sign at the beginning)
+    * `P2DT-3H4M` parsed to _2 days, -3 hours and 4 minutes_
+    * `-P2D` parsed to _-2 days_
 
 ## instance methods
 * `Duration abs()` - copy of this duration with a positive length.
@@ -82,3 +84,7 @@ All of methods below return `Period`:
 * `String toString()`
 * `long	toTotalMonths()`
 * `Period withDays/Months/Years(int amount)`
+
+# tests
+## duration
+### static methods
