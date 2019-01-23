@@ -119,4 +119,16 @@ All of methods below return `Period`:
         Duration.ZERO.get(ChronoUnit.MONTHS);
     }
     ```
-* daylight saving time 
+* daylight saving time
+    ```
+    LocalDateTime dateTime = LocalDateTime.of(2010, 3, 30, 10, 10, 10);
+    
+    assertThat(dateTime.plus(Duration.ofDays(1)), is(LocalDateTime.of(2010, 3, 31, 10, 10, 10)));
+    ```
+* withSeconds, withNanos
+    ```
+    Duration duration = Duration.ofSeconds(10, 15);
+    
+    assertThat(duration.withSeconds(15).withNanos(20),
+            is(Duration.ofSeconds(15, 20)));
+    ```
