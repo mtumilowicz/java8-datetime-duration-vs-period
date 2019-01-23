@@ -76,6 +76,6 @@ public class DurationTest {
         LocalDateTime dateTime = LocalDateTime.of(2010, 3, 30, 10, 10, 10);
 
         assertThat(dateTime.plus(Duration.ofDays(1)),
-                is(LocalDateTime.of(2010, 3, 30, 9, 10, 10)));
+                is(LocalDateTime.of(2010, 3, 31, 10, 10, 10)));
     }
 }
