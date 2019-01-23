@@ -22,7 +22,7 @@ _Reference_: https://docs.oracle.com/javase/8/docs/api/java/time/temporal/Chrono
     as you may see from one of the many static factory 
     methods - the duration is calculated to (second, millis)
 * seconds could be negative, positive or zero while nanoseconds could be only positive or zero
-* **daylight savings time: ignored**
+* **daylight savings time: NOT ignored for ** `ZonedDateTime`
 
 ## static methods
 All of methods below return `Duration`:
@@ -64,7 +64,7 @@ All of methods below return `Duration`:
 * a date-based amount of time in the ISO-8601 calendar system
 * models a quantity or amount of time in terms of years, months and days
 * period is modeled as a directed amount of time, meaning that individual parts of the period may be negative
-* **daylight savings time: maintain the local time**
+* **daylight savings time: ignored**
 
 ## static methods
 All of methods below return `Period`:
@@ -96,6 +96,8 @@ All of methods below return `Period`:
 * `Period withDays/Months/Years(int amount)`
 
 # tests
+We provide tests only for not-obvious methods and not obvious cases.
+
 ## duration
 * parse
     ```
@@ -120,7 +122,7 @@ All of methods below return `Period`:
         Duration.ZERO.get(ChronoUnit.MONTHS);
     }
     ```
-* daylight saving time
+* **daylight saving time**
     ```
     LocalDateTime dateTime = LocalDateTime.of(2010, 3, 30, 10, 10, 10);
     assertThat(dateTime.plus(Duration.ofDays(1)), is(LocalDateTime.of(2010, 3, 31, 10, 10, 10)));
@@ -143,7 +145,7 @@ We do not provide tests with same behaviour as `Duration`.
     ```
     assertThat(Period.ZERO.getUnits(), is(Arrays.asList(YEARS, MONTHS, DAYS)));
     ```
-* daylight saving time
+* **daylight saving time**
     ```
     LocalDateTime dateTime = LocalDateTime.of(2010, 3, 30, 10, 10, 10);
     assertThat(dateTime.plus(Period.ofDays(1)),
