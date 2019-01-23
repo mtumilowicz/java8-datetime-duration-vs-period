@@ -1,6 +1,7 @@
 import org.junit.Test;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.UnsupportedTemporalTypeException;
@@ -68,5 +69,13 @@ public class DurationTest {
 
         assertThat(duration.withSeconds(15).withNanos(20),
                 is(Duration.ofSeconds(15, 20)));
+    }
+
+    @Test
+    public void daylight_saving() {
+        LocalDateTime dateTime = LocalDateTime.of(2010, 3, 30, 10, 10, 10);
+
+        assertThat(dateTime.plus(Duration.ofDays(1)),
+                is(LocalDateTime.of(2010, 3, 30, 9, 10, 10)));
     }
 }
