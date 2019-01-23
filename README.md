@@ -80,7 +80,8 @@ All of methods below return `Period`:
 ## instance methods
 * `Temporal addTo/subtractFrom(Temporal temporal)`
 * `boolean equals(Object obj)`
-* `IsoChronology getChronology()` - ISO-8601
+* `IsoChronology getChronology()` - ISO-8601 (The ISO-8601 calendar system is the 
+    modern civil calendar system used today in most of the world)
 * `long	get(TemporalUnit unit)`
 * `int getDays/Months/Years()`
 * `List<TemporalUnit> getUnits()` - {YEARS, MONTHS, DAYS}
