@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/mtumilowicz/java8-datetime-duration-vs-period.svg?branch=master)](https://travis-ci.com/mtumilowicz/java8-datetime-duration-vs-period)
+
 # java8-datetime-duration-vs-period
 _Reference_: https://docs.oracle.com/javase/tutorial/datetime/iso/period.html  
 _Reference_: https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html  
