@@ -41,4 +41,9 @@ public class PeriodTest {
                 is(LocalDateTime.of(2019, 3, 31, 10, 10, 10)
                         .atZone(ZoneId.of("Europe/Paris"))));
     }
+    
+    @Test
+    public void getChronology() {
+        assertThat(Period.ofDays(1).getChronology().getCalendarType(), is("iso8601"));
+    }
 }
