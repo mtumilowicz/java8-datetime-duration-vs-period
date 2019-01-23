@@ -22,7 +22,7 @@ _Reference_: https://docs.oracle.com/javase/8/docs/api/java/time/temporal/Chrono
     as you may see from one of the many static factory 
     methods - the duration is calculated to (second, millis)
 * seconds could be negative, positive or zero while nanoseconds could be only positive or zero
-* **daylight savings time: NOT ignored for ** `ZonedDateTime`
+* **daylight savings time: NOT ignored for** `ZonedDateTime`
 
 ## static methods
 All of methods below return `Duration`:
@@ -33,8 +33,8 @@ All of methods below return `Duration`:
 * `parse(CharSequence text)` - pattern: `PnDTnHnMn.nS` (with optional sign at the beginning)
     * `P2DT-3H4M` parsed to _2 days, -3 hours and 4 minutes_
     * `-P2D` parsed to _-2 days_
-    * normalized to hours: _P2DT-3H4M_ -> _PT45H4M_, _PT60M_ -> _PT1H_
-    * minus in the front is removed and propagated inside: _-PT4M_ is transformed to _PT-4M_
+    * normalized to hours: `P2DT-3H4M` -> `PT45H4M`, `PT60M` -> `PT1H`
+    * minus in the front is removed and propagated inside: `-PT4M` is transformed to `PT-4M`
     * `DateTimeParseException`
 
 ## instance methods
@@ -80,10 +80,10 @@ All of methods below return `Period`:
 ## instance methods
 * `Temporal addTo/subtractFrom(Temporal temporal)`
 * `boolean equals(Object obj)`
-* `IsoChronology getChronology()`
-* `long	get(TemporalUnit unit)` - Gets the value of the requested unit.
+* `IsoChronology getChronology()` - ISO-8601
+* `long	get(TemporalUnit unit)`
 * `int getDays/Months/Years()`
-* `List<TemporalUnit> getUnits()`
+* `List<TemporalUnit> getUnits()` - {YEARS, MONTHS, DAYS}
 * `boolean isNegative()`
 * `boolean isZero()`
 * `Period minus/plus(TemporalAmount amount)`
@@ -155,4 +155,8 @@ We do not provide tests with same behaviour as `Duration`.
     ZonedDateTime dateTime = LocalDateTime.of(2019, 3, 30, 10, 10, 10).atZone(ZoneId.of("Europe/Paris"));
     assertThat(dateTime.plus(Period.ofDays(1)),
             is(LocalDateTime.of(2019, 3, 31, 10, 10, 10).atZone(ZoneId.of("Europe/Paris"))));
+    ```
+* getChronology
+    ```
+    assertThat(Period.ofDays(1).getChronology().getCalendarType(), is("iso8601"));
     ```
