@@ -74,6 +74,7 @@ All of methods below return `Period`:
 * `ofDays/Hours/Millis/Minutes/Nanos/Seconds(long amount)`
 * `parse(CharSequence text)`
     * format: `PnYnMnWnD` (with optional sign at the beginning)
+    * weeks are normalized to days: `P4W` -> `P28D`
     * `DateTimeParseException`
 
 ## instance methods
@@ -122,8 +123,12 @@ All of methods below return `Period`:
 * daylight saving time
     ```
     LocalDateTime dateTime = LocalDateTime.of(2010, 3, 30, 10, 10, 10);
-    
     assertThat(dateTime.plus(Duration.ofDays(1)), is(LocalDateTime.of(2010, 3, 31, 10, 10, 10)));
+    
+    
+    ZonedDateTime dateTime = LocalDateTime.of(2019, 3, 30, 10, 10, 10).atZone(ZoneId.of("Europe/Paris"));
+    assertThat(dateTime.plus(Duration.ofDays(1)), 
+        is(LocalDateTime.of(2019, 3, 31, 11, 10, 10).atZone(ZoneId.of("Europe/Paris"))));
     ```
 * withSeconds, withNanos
     ```
@@ -131,4 +136,21 @@ All of methods below return `Period`:
     
     assertThat(duration.withSeconds(15).withNanos(20),
             is(Duration.ofSeconds(15, 20)));
+    ```
+## period
+We do not provide tests with same behaviour as `Duration`.
+* getUnits
+    ```
+    assertThat(Period.ZERO.getUnits(), is(Arrays.asList(YEARS, MONTHS, DAYS)));
+    ```
+* daylight saving time
+    ```
+    LocalDateTime dateTime = LocalDateTime.of(2010, 3, 30, 10, 10, 10);
+    assertThat(dateTime.plus(Period.ofDays(1)),
+            is(LocalDateTime.of(2010, 3, 31, 10, 10, 10)));
+            
+            
+    ZonedDateTime dateTime = LocalDateTime.of(2019, 3, 30, 10, 10, 10).atZone(ZoneId.of("Europe/Paris"));
+    assertThat(dateTime.plus(Period.ofDays(1)),
+            is(LocalDateTime.of(2019, 3, 31, 10, 10, 10).atZone(ZoneId.of("Europe/Paris"))));
     ```
