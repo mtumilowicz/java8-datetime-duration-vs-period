@@ -57,8 +57,8 @@ All of methods below return `Duration`:
 * `String toString()`
     * format: `PTnHnMnS` and fractional seconds are placed after a decimal point in the seconds section
     * hours, minutes and seconds all have the same sign
+* `Duration withSeconds(long seconds)` - copy of this duration with the specified amount of seconds
 * `Duration withNanos(int nanoOfSecond)`
-* `Duration withSeconds(long seconds)`
 
 # period
 * a date-based amount of time in the ISO-8601 calendar system
@@ -96,4 +96,26 @@ All of methods below return `Period`:
 
 # tests
 ## duration
-### static methods
+* parse
+    ```
+    Duration duration = Duration.parse("P2DT-3H4M");
+    assertThat(duration.toString(), is("PT45H4M"));
+    
+    Duration duration = Duration.parse("-PT4M");
+    assertThat(duration.toString(), is("PT-4M"));
+    
+    Duration d1 = Duration.parse("PT60M");
+    Duration d2 = Duration.parse("PT1H");
+    assertThat(d1, is(d2));
+    ```
+* getUnits
+    ```
+    assertThat(Duration.ZERO.getUnits(), is(Arrays.asList(SECONDS, NANOS)));
+    ```
+* get not supported unit
+    ```
+    @Test(expected = UnsupportedTemporalTypeException.class)
+    public void get() {
+        Duration.ZERO.get(ChronoUnit.MONTHS);
+    }
+    ```
